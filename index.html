@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+</head>
+
+<body ng-app="myapp">
+<h3>Pocket XChange</h3>
+<div ng-controller="MyController" >
+    <form ng-submit="myForm.submitTheForm()">
+        <select ng-model="myForm.ocur">
+<option value="">Currency I have</option>
+            <option value="dollar">USD</option>
+            <option value="euro">EUR</option>
+            <option value="yen">YEN</option>
+        </select><br>        
+        <select ng-model="myForm.dcur">
+<option value="">Currency I want</option>            
+            <option value="dollar">USD</option>
+            <option value="euro">EUR</option>
+            <option value="yen">YEN</option>
+        </select><br>
+        <select ng-maxlength="6" ng-model="myForm.air"
+                ng-options="obj.id as obj.name for obj in myForm.options">
+<option value="">Please choose an airport</option>
+        </select><br>
+
+    Minimum amount needed:<input type="text" value="0.00">
+<br>
+    <input type="submit" value="Submit Form">
+    </form>
+
+</div>
+
+<script>
+    angular.module("myapp", [])
+        .controller("MyController", function($scope) {
+            $scope.myForm = {};
+            $scope.myForm.air  = "dulles";
+
+            $scope.myForm.options = [
+              { id : "dulles", name: "IAD" }
+             ,{ id : "reagan", name: "DCA" }
+             ,{ id : "bwi"  , name: "BWI" }
+             ];
+
+        } );
+</script>
+</body>
+</html>
